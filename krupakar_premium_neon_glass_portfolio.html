@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Badugu Krupakar • Portfolio</title>
+  <meta name="description" content="Badugu Krupakar — student, DSA enthusiast. Premium neon glass portfolio with smooth animations and projects." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-start:#0a021a; /* deep purple */
+      --bg-end:#020611;   /* deep blue */
+      --text:#eaeaf7;
+      --muted:#b7b8cd;
+      --accent:#7c4dff;   /* purple */
+      --accent-2:#00b5ff; /* blue */
+      --card: rgba(255,255,255,0.06);
+      --card-border: rgba(255,255,255,0.15);
+      --glass: blur(12px) saturate(120%);
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35), 0 0 60px rgba(124,77,255,.15), 0 0 60px rgba(0,181,255,.12);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial,Helvetica,sans-serif;
+      color:var(--text);
+      background: radial-gradient(1200px 800px at 10% 0%, rgba(124,77,255,.18), transparent 60%),
+                  radial-gradient(1200px 800px at 90% 10%, rgba(0,181,255,.18), transparent 60%),
+                  linear-gradient(135deg,var(--bg-start),var(--bg-end));
+      overflow-x:hidden;
+      scroll-behavior:smooth;
+    }
+
+    /* ===== Utility ===== */
+    .container{width:min(1100px,92%);margin-inline:auto}
+    .grid{display:grid;gap:24px}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:14px;font-weight:600;text-decoration:none;color:#0a0a0f;background:linear-gradient(90deg,var(--accent),var(--accent-2));box-shadow:0 6px 18px rgba(124,77,255,.35);transition:transform .2s ease, box-shadow .25s ease, filter .25s ease}
+    .btn:hover{transform:translateY(-2px);filter:saturate(115%);box-shadow:0 10px 26px rgba(0,181,255,.35)}
+    .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--card-border);box-shadow:none}
+    .btn.ghost:hover{background:linear-gradient(90deg,rgba(124,77,255,.18),rgba(0,181,255,.18))}
+    .chip{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;background:linear-gradient(90deg,rgba(124,77,255,.15),rgba(0,181,255,.15));border:1px solid var(--card-border);backdrop-filter:var(--glass);-webkit-backdrop-filter:var(--glass);transition:transform .2s ease, box-shadow .25s ease}
+    .chip:hover{transform:translateY(-3px);box-shadow:0 10px 22px rgba(124,77,255,.25)}
+    .muted{color:var(--muted)}
+    .section-title{font-size:clamp(1.6rem,2.2vw,2.2rem);font-weight:700;text-align:center;letter-spacing:.3px;margin:8px 0 28px;position:relative}
+    .section-title span{background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+    /* ===== Nav ===== */
+    .nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,rgba(2,6,17,.85),rgba(2,6,17,.55) 60%,transparent);backdrop-filter:var(--glass);-webkit-backdrop-filter:var(--glass);border-bottom:1px solid var(--card-border)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.3px}
+    .brand-dot{width:10px;height:10px;border-radius:50%;background:radial-gradient(circle at 40% 40%,#fff, #fff0 60%), radial-gradient(circle at 70% 30%, var(--accent-2), transparent 60%), radial-gradient(circle at 30% 70%, var(--accent), transparent 60%);box-shadow:0 0 14px rgba(124,77,255,.75)}
+    .nav a{color:var(--text);text-decoration:none;opacity:.9}
+    .nav-links{display:flex;gap:18px}
+    .nav-links a{padding:10px 12px;border-radius:12px;transition:background .2s ease, opacity .2s ease}
+    .nav-links a:hover{background:rgba(255,255,255,.06);opacity:1}
+
+    /* ===== Hero ===== */
+    .hero{padding:72px 0 40px}
+    .hero-card{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;background:var(--card);border:1px solid var(--card-border);border-radius:var(--radius);backdrop-filter:var(--glass);-webkit-backdrop-filter:var(--glass);box-shadow:var(--shadow);padding:28px}
+    .hero h1{font-size:clamp(2.1rem,4.8vw,3.8rem);line-height:1.1;margin:4px 0;background:linear-gradient(90deg,#fff,var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .subtitle{min-height:28px;font-weight:600;color:var(--muted)}
+    .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+    .pfp-wrap{display:grid;place-items:center}
+    .pfp{width:min(230px,60vw);aspect-ratio:1/1;border-radius:30px;border:1px solid var(--card-border);background:linear-gradient(135deg,rgba(124,77,255,.25),rgba(0,181,255,.22));box-shadow:var(--shadow);position:relative;overflow:hidden}
+    .pfp img{width:100%;height:100%;object-fit:cover;display:block}
+    .orb{position:absolute;inset:auto auto -30% -30%;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(124,77,255,.9),rgba(124,77,255,.2) 60%,transparent 70%);filter:blur(20px)}
+
+    /* ===== About ===== */
+    .about-card{background:var(--card);border:1px solid var(--card-border);border-radius:var(--radius);backdrop-filter:var(--glass);-webkit-backdrop-filter:var(--glass);box-shadow:var(--shadow);padding:28px}
+    .about-grid{display:grid;gap:18px;grid-template-columns:1fr}
+    .contact-inline{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px}
+    .contact-inline a{justify-content:center}
+
+    /* ===== Skills ===== */
+    .skills-wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+
+    /* ===== Projects ===== */
+    .projects{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .card{background:var(--card);border:1px solid var(--card-border);border-radius:16px;backdrop-filter:var(--glass);-webkit-backdrop-filter:var(--glass);padding:20px;box-shadow:var(--shadow);transition:transform .25s ease, box-shadow .25s ease}
+    .card:hover{transform:translateY(-6px);box-shadow:0 14px 40px rgba(0,181,255,.28),0 6px 22px rgba(124,77,255,.22)}
+    .card h3{margin:0 0 8px}
+    .badge{display:inline-block;margin-top:8px;font-size:.85rem;color:var(--muted)}
+
+    /* ===== Footer ===== */
+    footer{padding:36px 0;color:var(--muted);text-align:center}
+
+    /* ===== Reveal Animations ===== */
+    .reveal{opacity:0;transform:translateY(18px);filter:blur(6px);transition:opacity .6s ease, transform .6s ease, filter .6s ease}
+    .reveal.show{opacity:1;transform:none;filter:none}
+
+    /* ===== Responsive ===== */
+    @media (max-width:900px){
+      .hero-card{grid-template-columns:1fr}
+      .pfp{width:min(320px,80vw);border-radius:22px}
+      .nav-links{display:none}
+      .contact-inline{grid-template-columns:1fr 1fr}
+    }
+  </style>
+</head>
+<body>
+  <!-- =================== NAV =================== -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand"><span class="brand-dot" aria-hidden="true"></span> BK Portfolio</div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =================== HERO =================== -->
+  <header class="hero container">
+    <div class="hero-card reveal">
+      <div>
+        <!-- PERSONAL INFO: Edit these lines later to update your details -->
+        <p class="muted">Hi, I'm</p>
+        <h1>Badugu Krupakar</h1>
+        <div id="typed" class="subtitle" aria-live="polite"></div>
+        <div class="actions">
+          <a class="btn" href="mailto:krupakarbadugu2007@gmail.com">Email Me</a>
+          <a class="btn ghost" href="tel:+918919554260">Call: +91 89195 54260</a>
+          <a class="btn ghost" href="https://www.linkedin.com/in/krupakar-badugu69" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <div class="pfp-wrap">
+        <div class="pfp">
+          <img id="avatar" src="profilepic.jpg" alt="Badugu Krupakar portrait" />
+          <span class="orb" aria-hidden="true"></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- =================== ABOUT =================== -->
+  <section id="about" class="container">
+    <h2 class="section-title"><span>About</span> Me</h2>
+    <div class="about-card reveal">
+      <div class="about-grid">
+        <p>
+          I’m a student who loves solving problems with <strong>Data Structures & Algorithms</strong> and turning ideas into clean, modern interfaces.
+          I enjoy blending logic and design to build experiences that are fast, responsive, and delightful.
+          Currently leveling up my backend skills while sharpening my frontend fundamentals.
+        </p>
+        <p class="muted">
+          I believe in shipping small, learning fast, and improving every day. When I’m not coding, I’m exploring new tools, polishing UI details, or practicing competitive programming.
+        </p>
+        <div class="contact-inline">
+          <a class="btn" href="mailto:krupakarbadugu2007@gmail.com">📧 krupakarbadugu2007@gmail.com</a>
+          <a class="btn ghost" href="tel:+918919554260">📱 +91 89195 54260</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== SKILLS =================== -->
+  <section id="skills" class="container">
+    <h2 class="section-title">My <span>Skills</span></h2>
+    <div class="skills-wrap reveal">
+      <span class="chip">DSA</span>
+      <span class="chip">Basic Frontend</span>
+      <span class="chip">HTML</span>
+      <span class="chip">CSS</span>
+      <span class="chip">JavaScript (Basics)</span>
+      <span class="chip">Git</span>
+      <span class="chip">GitHub</span>
+      <span class="chip">C++</span>
+      <span class="chip">Python</span>
+      <span class="chip">Java (Basic)</span>
+    </div>
+  </section>
+
+  <!-- =================== PROJECTS =================== -->
+  <section id="projects" class="container">
+    <h2 class="section-title"><span>Projects</span> (Sample)</h2>
+    <div class="grid projects">
+      <article class="card reveal">
+        <h3>Smart To‑Do (DSA Focus)</h3>
+        <p class="muted">A minimal to‑do app with priority scheduling using heaps. Clean UI, instant filtering, and local storage persistence.</p>
+        <div class="badge">Tech: HTML, CSS, JS</div>
+      </article>
+      <article class="card reveal">
+        <h3>Discount Banner • Local Luxe</h3>
+        <p class="muted">A reusable promo banner component with glow hover, ideal for showcasing nearby deals and offers.</p>
+        <div class="badge">Tech: CSS, JS</div>
+      </article>
+      <article class="card reveal">
+        <h3>Portfolio vNext</h3>
+        <p class="muted">Next iteration plan for this site: section-based animations, content from JSON, and a blog for notes.</p>
+        <div class="badge">Tech: HTML, CSS, JS</div>
+      </article>
+    </div>
+  </section>
+
+  <!-- =================== CONTACT =================== -->
+  <section id="contact" class="container">
+    <h2 class="section-title"><span>Contact</span> Me</h2>
+    <div class="grid reveal" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));">
+      <a class="card btn" style="justify-content:center" href="mailto:krupakarbadugu2007@gmail.com">Email Me</a>
+      <a class="card btn ghost" style="justify-content:center" href="tel:+918919554260">Call Me</a>
+      <a class="card btn ghost" style="justify-content:center" href="https://www.linkedin.com/in/krupakar-badugu69" target="_blank" rel="noopener">LinkedIn Profile</a>
+      <a class="card btn ghost" style="justify-content:center" target="_blank" rel="noopener" href="https://mail.google.com/mail/?view=cm&to=krupakarbadugu2007@gmail.com&su=Hello%20Krupakar">Open Gmail Compose</a>
+    </div>
+  </section>
+
+  <footer class="container">
+    © <span id="year"></span> Badugu Krupakar • Built with passion
+  </footer>
+
+  <script>
+    // ===== Typing effect (no library) =====
+    const roles = [
+      'Student',
+      'DSA Enthusiast',
+      'Learning Backend',
+      'Basic Frontend Developer'
+    ];
+    const typedEl = document.getElementById('typed');
+    let r = 0, i = 0, erasing = false;
+
+    function typeLoop(){
+      const text = roles[r];
+      if(!erasing){
+        typedEl.textContent = text.slice(0, ++i);
+        if(i === text.length){
+          erasing = true; setTimeout(typeLoop, 1200); return;
+        }
+      } else {
+        typedEl.textContent = text.slice(0, --i);
+        if(i === 0){ erasing = false; r = (r+1) % roles.length; }
+      }
+      const delay = erasing ? 45 : 70;
+      setTimeout(typeLoop, delay);
+    }
+    typeLoop();
+
+    // ===== IntersectionObserver reveal =====
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('show');
+          io.unobserve(e.target);
+        }
+      })
+    },{threshold:0.12});
+    revealEls.forEach(el=>io.observe(el));
+
+    // ===== Year in footer =====
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ===== Avatar fallback if image missing =====
+    const avatar = document.getElementById('avatar');
+    avatar.addEventListener('error',()=>{
+      // Replace with gradient canvas
+      avatar.replaceWith(Object.assign(document.createElement('div'),{
+        className:'avatar-fallback'
+      }));
+      const style = document.createElement('style');
+      style.textContent = `.avatar-fallback{width:100%;height:100%;border-radius:30px;background:conic-gradient(from 180deg at 50% 50%, rgba(124,77,255,.9), rgba(0,181,255,.9), rgba(124,77,255,.9)); filter:blur(0);}`;
+      document.head.appendChild(style);
+    });
+  </script>
+</body>
+</html>
